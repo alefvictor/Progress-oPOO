@@ -1,0 +1,89 @@
+public class Televisor{
+    private boolean ligado;
+    private int volume;
+    private int canal;
+    private String marca;
+public Televisor(boolean ligado, int volume, int canal, String marca){
+    this.ligado = ligado;
+    this.volume = volume;
+    this.canal = canal;
+    this.marca = marca;
+}
+public boolean getLigado(){
+    return ligado;
+}
+public void Ligar(){
+    this.ligado = true;
+}
+public void Desligar(){
+    this.ligado = false;
+}
+public int getCanal(){
+    return canal;
+}
+public void setCanal(int canal){
+    this.canal = canal;
+}
+public int getVolume(){
+    return volume;
+}
+public void aumentarVolume(){
+    this.volume = volume + 1;
+}
+public void diminuirVolume(){
+    this.volume = volume - 1;
+}
+public String getMarca(){
+    return marca;
+}
+public void setMarca(String marca){
+    this.marca = marca;
+}
+public String toString(){
+    return ligado + " " + volume + " " + canal + " " + marca;
+}
+public static void main (String[]args){
+    Televisor A = new Televisor (false, 20, 13, "Semp Toshiba");
+    Controle C = new Controle (A);
+    System.out.println(C);
+}
+}
+class Controle{                                                            
+    private Televisor tv;
+public Controle(Televisor tv){
+    this.tv = tv;
+}
+public String getTelevisor(){
+    return tv.getMarca();
+}
+public boolean getLigado(){
+    return tv.getLigado();
+}
+public int getCanal(){
+    return tv.getCanal();
+}
+public int getVolume(){
+    return tv.getVolume();
+}
+public void Ligar(){
+    tv.Ligar();
+}
+public void Desligar(){
+    tv.Desligar();
+}
+public void aumentarVolume(){
+    tv.aumentarVolume();
+}
+public void diminuirVolume(){
+    tv.diminuirVolume();
+}
+public String toString(){
+    return tv.toString();
+}
+public void setCanal(int canal){
+    tv.setCanal(canal);
+}
+public void setMarca(String marca){
+    tv.setMarca(marca);
+}
+}

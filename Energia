@@ -1,0 +1,29 @@
+class ContaEnergia{
+private String nome;
+private double consumo;
+public ContaEnergia(String nome, double consumo){
+this.nome = nome;
+this.consumo = consumo;
+}
+public double calcularValor(){
+if (consumo <= 50){
+return 10.00;
+}
+else if (consumo <= 100){
+return 10.00 + (consumo-50) * 0.20;
+}
+else if (consumo <= 200){
+return 10.00 + (100-50) * 0.20 + (consumo -100) * 0.25;
+}
+else {
+return 10.00 + (100-50) * 0.20 + (200-100) * 0.25 + (consumo - 200) * 0.35;
+}
+}
+}
+public class Main{
+public static void main(String[] args){
+ContaEnergia c = new ContaEnergia("Rytha de Cassia", 20000);
+double valor = c.calcularValor();
+System.out.println("Rytha de Cassia vai ter que pagar: " + valor);
+}
+}

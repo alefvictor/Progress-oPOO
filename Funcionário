@@ -1,0 +1,36 @@
+public class Funcionario{
+    private int Codigo;
+    private String Nome;
+    private String CPF;
+    private String Endereco;
+    private int Telefone;
+    private String Idade;
+    private double Salario;
+    private int NumeroDependentes;
+public Funcionario(int Codigo, String Nome, String CPF, String Endereco, int Telefone, String Idade, double Salario, int NumeroDependentes){
+    this.Codigo = Codigo;
+    this.Nome = Nome;
+    this.CPF = CPF;
+    this.Endereco = Endereco;
+    this.Telefone = Telefone;
+    this.Idade = Idade;
+    this.Salario = Salario;
+    this.NumeroDependentes = NumeroDependentes;
+}
+public String ToString(){
+    return Codigo + " " + Nome + " " + CPF + " " + Endereco + " " + Telefone + " " + Idade + " " + Salario + " " + NumeroDependentes;
+}
+public void Exibir(){
+    System.out.println(ToString());
+}
+public void setSalario(double valor){
+    this.Salario = valor;
+}
+public double CalcularSalario(int percent){
+    return(Salario - ((Salario*11)/100)) + (NumeroDependentes * ((Salario*percent/100)));
+}
+public static void main (String[]args){
+    Funcionario B =  new Funcionario(2, "Aleff Victor", "123.768.980-34", "Sitio Cuité Menino Deus", 982051202, "18 anos" , 510.000, 2);
+    B.Exibir();
+}
+}

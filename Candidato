@@ -1,0 +1,107 @@
+import java.util.Scanner;
+class Candidato{
+   private String nome;
+   private String partido;
+   private int NumVotos;
+   public Candidato(String nome, String partido){
+       this.nome = nome;
+       this.partido = partido;
+       this.NumVotos = 0;
+   }
+   public String getnome(){
+       return nome;
+   }
+   public void setnome(String nome){
+       this.nome = nome;
+   }
+   public String getpartido(){
+       return partido;
+   }
+   public void setpartido(String partido){
+       this.partido = partido;
+   }
+   public int getNumVotos(){
+       return NumVotos;
+   }
+   public void setNumVotos(int NumVotos){
+       this.NumVotos = NumVotos;
+   }
+   public void AdcVoto(){
+       NumVotos++;
+   }
+   public String toString(){
+   return nome + " " + partido + " " + NumVotos;
+   }
+}
+class Urna{
+   private Candidato candidato1;
+   private Candidato candidato2;
+   private int BrancosNulos;
+   private int TotalVotos;
+  
+   public Urna(Candidato candidato1, Candidato candidato2){
+       this.candidato1 = candidato1;
+       this.candidato2 = candidato2;
+       this.BrancosNulos = 0;
+       this.TotalVotos = 0;
+   }
+   public void Votar(int voto){
+       TotalVotos += 1;
+       if (voto == 1){
+           candidato1.AdcVoto();
+       }else if (voto == 2){
+           candidato2.AdcVoto();
+       }else if (voto == 3){
+           BrancosNulos++;
+       }else if (voto == 0){
+           System.out.println("Voto inválido!");
+       }
+   }
+   public Candidato ExibirTotalGeralDeVotos(){
+       System.out.println("Total geral de votos: "+TotalVotos);
+       return null;
+   }
+   public Candidato ExibirTotalDeVotosBrancosNulos(){
+       System.out.println("Votos brancos ou nulos: "+BrancosNulos);
+       return null;
+   }
+   public Candidato ExibirTotalDeVotosDosCandidatos(){
+       System.out.println("Votos para o candidato 1: "+candidato1.getNumVotos());
+       System.out.println("Votos para o candidato 2: "+candidato2.getNumVotos());
+       return null;
+   }
+   public Candidato ExibirDadosDoCandidatoVencedor(){
+       if (candidato1.getNumVotos() > candidato2.getNumVotos()){
+           System.out.println("Candidato vencedor foi: "+candidato1);
+           return null;
+       }else if (candidato1.getNumVotos() < candidato2.getNumVotos()){
+           System.out.println("Candidato vencedor foi: "+candidato2);
+           return null;
+       }else {
+           System.out.println("EMPATE!");
+           return null;
+       }
+   }
+}
+public class Main{
+   public static void main (String[]args){
+   Scanner teclado = new Scanner(System.in);
+   Candidato A = new Candidato ("Samuel", "BR");
+   Candidato B = new Candidato ("Victor", "PT");
+   Urna U = new Urna(A, B);
+   int vot = -1;
+   while (vot != 0){
+     System.out.println("Vote: ");
+     vot = teclado.nextInt();
+     if (vot != 0){
+        U.Votar(vot);
+     }
+   }
+   U.ExibirDadosDoCandidatoVencedor();
+   U.ExibirTotalDeVotosDosCandidatos();
+   U.ExibirTotalDeVotosBrancosNulos();
+   U.ExibirTotalGeralDeVotos();
+   System.out.println(A);
+   System.out.println(B);
+}
+}

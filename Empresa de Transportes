@@ -1,0 +1,29 @@
+abstract class frete{
+    public int distancia;
+    public int valor_cobrado;
+    public abstract double calcularFrete()
+}
+
+class FretePadrao  extends frete{
+    public double calcularFrete();
+        return (distancia * valor_cobrado);
+}
+
+class FreteExpresso extends frete{
+    public double calcularFreteExpresso();
+        return (distancia * valor_cobrado) + (nívelUrgencia * 100);
+}
+
+class FreteSuperExpresso extends frete{
+    public double calcularFreteSuperExpresso();
+        return  (distancia * valor_cobrado) + (nívelUrgencia * 100) + valorDoSeguro;
+}
+
+
+public class CadastroFrete{
+        public static void main(String[] args){
+            frete = new int[10];
+            
+        }
+        
+}

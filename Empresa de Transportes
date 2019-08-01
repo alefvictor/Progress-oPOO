@@ -1,24 +1,70 @@
-abstract class frete{
-    public int distancia;
-    public int valor_cobrado;
-    public abstract double calcularFrete()
+//Crie uma classe abstrata chamada Frete com um atributo numérico representando adistância em km e outro atributo representando o valor cobrado por quilômetro. Além disso,a classe Frete deve conter um método abstrato com a seguinte assinatura: public abstractdouble calcularFrete().  Todas   as  classes   de   fretes  concretas  devem  obrigatoriamenteimplementar este método;
+
+abstract class Frete{
+    private int distancia;
+    private int valorCobrado;
+    public abstract double calcularFrete();
+    
+    public int getdistancia(){
+        return distancia;
+    }
+    
+    public void setdistancia(int distancia){
+        this.distancia = distancia;
+    }
+    
+    public int getvalorCobrado(){
+        return valorCobrado;
+    }
+    
+    public void setvalorCobrado(int valorCobrado){
+        this.valorCobrado = valorCobrado;
+    }
+    
 }
 
-class FretePadrao  extends frete{
+//Implemente a classe concreta  FretePadrao  que será usada para representar fretesrealizados sem nenhuma urgência. O cálculo do FretePadrao é realizado com a seguinte fórmula: distancia * valorPorKm;
+
+class FretePadrao  extends Frete{
     public double calcularFrete();
-        return (distancia * valor_cobrado);
+        return (getdistancia() * getvalorCobrado();
 }
 
+//Implemente a classe concreta FreteExpresso  que será usada para representar fretes realizados com algum nível de urgência. O cálculo do FreteExpresso é realizado com aseguinte fórmula: (distancia * valorPorKm) + (nívelUrgencia * 100);
 class FreteExpresso extends frete{
+    private int nivelUrgencia;
+    
+    public int getnivelUrgencia(){
+        return nivelUrgencia;
+    } 
+    
+    public void setNivelUrgencia(int nivelUrgencia){
+        this.nivelUrgencia = niveloUrgencia;
+    }
+    
     public double calcularFreteExpresso();
-        return (distancia * valor_cobrado) + (nívelUrgencia * 100);
+        return (getdistancia() * getvalorCobrado()) + (getnivelUrgencia() * 100);
 }
 
-class FreteSuperExpresso extends frete{
+
+// Implemente a classe concreta FreteSuperExpresso  que será usada para representarfretes realizados com um valor de seguro. O cálculo do FreteSuperExpresso é realizadocom a seguinte fórmula: (distancia * valorPorKm) + (nívelUrgencia * 100) + valorDoSeguro;
+
+class FreteSuperExpresso extends Frete{
+    private double valorSeguro;
+    
+    public double getvalorSeguro(){
+        return valorSeguro;
+    }
+    
+    public void setvalorSeguro(){
+        this.valorSeguro = valorSeguro
+    }
+    
     public double calcularFreteSuperExpresso();
-        return  (distancia * valor_cobrado) + (nívelUrgencia * 100) + valorDoSeguro;
+        return  (getdistancia * getvalorCobrado) + (nívelUrgencia * 100) + valorSeguro;
 }
 
+//Crie uma classe chamada  CadastroFrete  que será utilizada para cadastrar até 10fretes,  para isso você deve utilizar um vetor. Além disso, esta classe deve possuir ummétodo para calcular o valor total dos fretes cadastrados.
 
 public class CadastroFrete{
         public static void main(String[] args){

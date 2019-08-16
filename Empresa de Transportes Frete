@@ -1,0 +1,93 @@
+abstract class frete {
+  private double distanciaKm, valorPorKm;
+
+  public frete(double distanciaKm, double valorPorKm){
+    this.distanciaKm =  distanciaKm;
+    this.valorPorKm = valorPorKm;
+  }
+  public double getDistanciaKm(){
+    return distanciaKm;
+  }
+  public double getValorPorKm(){
+    return valorPorKm;
+  }
+  
+
+  public abstract double calcularFrete();
+}
+
+class fretePadrao extends frete {
+
+  public fretePadrao(double distanciaKm,double valorPorKm){
+    super(distanciaKm, valorPorKm);
+  }
+  public double calcularFrete(){
+    return (getDistanciaKm() * getValorPorKm());
+  }
+
+}
+
+class FreteExpresso extends frete {
+  private int nivelUrgencia;
+
+  public FreteExpresso(double distanciaKm, double valorPorKm, int nivelUrgencia){
+    super(distanciaKm, valorPorKm);
+    this.nivelUrgencia = nivelUrgencia;
+  }
+  public int getNivelUrgencia(){
+    return nivelUrgencia;
+  }
+  public double calcularFrete(){
+    return (getDistanciaKm() * getValorPorKm()) + (getNivelUrgencia() * 100);
+  }
+}
+
+class FreteSuperExpresso extends FreteExpresso{
+  private double valorDoSeguro;
+
+  public FreteSuperExpresso(double distanciaKm, double valorPorKm, int nivelUrgencia, double valorDoSeguro){
+    super(distanciaKm, valorPorKm, nivelUrgencia);
+    this.valorDoSeguro = valorDoSeguro;
+  }
+  public double getValorDoSeguro(){
+    return valorDoSeguro;
+  }
+  public double calcularFrete() {
+    return (getDistanciaKm() * getValorPorKm()) + (getNivelUrgencia() * 100) + getValorDoSeguro();
+  }
+  
+}
+
+class CadastroFrete  {
+  private int qtd;
+  private  frete[] Fretes;
+  public CadastroFrete(int qtd){
+    this.qtd = 0;
+    this.Fretes = new frete[qtd]; 
+  }
+  public boolean addFrete( frete f){
+    if (qtd <= 10) return false;
+    
+      this.Fretes[qtd++] = f;
+      return true;
+    
+  }
+
+  public double calcularFrete(){
+    double total = 0;
+    for (int i = 0; i < Fretes.length; ++i){
+     if (Fretes[i] != null) {
+       total = total + Fretes[i].calcularFrete();
+     }
+    }
+
+    return total;
+
+}
+}
+
+public class Main{
+  public static void main(String []args){
+    
+  }
+}

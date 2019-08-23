@@ -1,4 +1,5 @@
-
+abstract class Militar {
+  private String patente;
   private int matricula;
   
 

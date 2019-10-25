@@ -76,7 +76,7 @@ public double calcularTotal(){
 double total = 0;
 for (int i = 0; i < empregados.size(); i++){
 total = total + empregados.get(i).calcularSalario();
-//POLIMORFISMO!!!
+//ESTÁ OCORRENDO O POLIMORFISMO!!!
 }
 return total;
 }

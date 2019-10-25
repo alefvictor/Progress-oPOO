@@ -1,0 +1,102 @@
+public interface Assalariado {
+public double calcularSalario();
+}
+
+public abstract class Empregado implements Assalariado {
+private String nome, cpf;
+private double salario;
+public Empregado(String nome, String cpf, double salario) {
+this.nome = nome;
+this.cpf = cpf;
+this.salario = salario;
+}
+public String getNome() {
+return nome;
+}
+public String getCpf() {
+return cpf;
+}
+public double getSalario() {
+return salario;
+}
+}
+
+public class Comissionado extends Empregado {
+private double valorVenda, taxaComissao;
+public Comissionado(double valorVenda, double taxaComissao,
+String nome, String cpf, double salario) {
+super(nome, cpf, salario);
+this.valorVenda = valorVenda;
+this.taxaComissao = taxaComissao;
+}
+@Override
+public double calcularSalario() {
+return getSalario() + (valorVenda * taxaComissao);
+}
+}
+
+public class Horista extends Empregado{
+private double precoHoras, horasTrabalhadas;
+public Horista(double precoHoras, double horasTrabalhadas,
+String nome, String cpf, double salario) {
+super(nome, cpf, salario);
+this.precoHoras = precoHoras;
+this.horasTrabalhadas = horasTrabalhadas;
+}
+@Override
+public double calcularSalario() {
+return getSalario() + (precoHoras * horasTrabalhadas);
+}
+}
+
+public class Mensalista extends Empregado{
+private double mesesTrabalhados;
+public Mensalista(String nome, String cpf, double salario,
+double mesesTrabalhados) {
+super(nome, cpf, salario);
+this.mesesTrabalhados = mesesTrabalhados;
+}
+@Override
+public double calcularSalario() {
+return getSalario() * mesesTrabalhados;
+}
+}
+
+import java.util.ArrayList;
+import java.util.List;
+public class FolhaDePagamento{
+private List<Assalariado> empregados = new ArrayList<>();
+public FolhaDePagamento(){
+super();
+}
+public void adicionarAssalariado(Assalariado a){
+empregados.add(a);
+}
+public double calcularTotal(){
+double total = 0;
+for (int i = 0; i < empregados.size(); i++){
+total = total + empregados.get(i).calcularSalario();
+//POLIMORFISMO!!!
+}
+return total;
+}
+public void imprimirTotal(){
+System.out.println("O valor total da folha é: "
++ calcularTotal());
+}
+}
+
+public class Principal{
+public static void main(String[] args) {
+FolhaDePagamento folha = new FolhaDePagamento();
+Assalariado horista = new Horista(30, 10, "José", "97947694",
+4000);
+Assalariado mensalista = new Mensalista("Maria", "234234", 200, 3);
+Assalariado comissionado = new Comissionado(200, 0.5, "Pedro",
+"234234", 10000);
+folha.adicionarAssalariado(horista);
+folha.adicionarAssalariado(mensalista);
+folha.adicionarAssalariado(comissionado);
+folha.imprimirTotal();
+}
+}
